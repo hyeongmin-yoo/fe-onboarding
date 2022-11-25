@@ -3,14 +3,41 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "postinstall": "yarn res link",
+    "dev": "concurrently -c 'auto' 'yarn:dev:*'",
+    "dev:res": "rescript build -w",
+    "dev:next": "next dev",
+    "dev:relay": "rescript-relay-compiler --watch",
+    "relay": "rescript-relay-compiler",
+    "rescript": "rescript",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "introspection": "sh -c 'source .env.local && get-graphql-schema -h \"Authorization=bearer $GITHUB_ACCESS_TOKEN\" https://api.github.com/graphql > schema.graphql'"
   },
   "dependencies": {
     "next": "13.0.5",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-relay": "14.1.0",
+    "relay-runtime": "14.1.0",
+    "rescript-relay": "^1.0.2"
+  },
+  "devDependencies": {
+    "@rescript/react": "^0.10.3",
+    "concurrently": "^7.6.0",
+    "get-graphql-schema": "^2.1.2",
+    "rescript": "^10.0.1"
+  },
+  "dependenciesMeta": {
+    "@rescript/react@0.10.3": {
+      "unplugged": true
+    },
+    "rescript@10.0.1": {
+      "unplugged": true
+    },
+    "rescript-relay@1.0.2": {
+      "unplugged": true
+    }
   }
 }
