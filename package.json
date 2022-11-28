@@ -9,13 +9,15 @@
     "dev:next": "next dev",
     "dev:relay": "rescript-relay-compiler --watch",
     "relay": "rescript-relay-compiler",
-    "rescript": "rescript",
+    "build:res": "rescript build -with-deps",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "introspection": "sh -c 'source .env.local && get-graphql-schema -h \"Authorization=bearer $GITHUB_ACCESS_TOKEN\" https://api.github.com/graphql > schema.graphql'"
+    "introspection": "sh -c 'source .env.local && get-graphql-schema -h \"Authorization=bearer $NEXT_PUBLIC_ACCESS_TOKEN\" https://api.github.com/graphql > schema.graphql'"
   },
   "dependencies": {
+    "@ryyppy/rescript-promise": "^2.1.0",
+    "bs-fetch": "^0.6.2",
     "next": "13.0.5",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -27,13 +29,23 @@
     "@rescript/react": "^0.10.3",
     "concurrently": "^7.6.0",
     "get-graphql-schema": "^2.1.2",
+    "next-transpile-modules": "^10.0.0",
     "rescript": "^10.0.1"
   },
   "dependenciesMeta": {
     "@rescript/react@0.10.3": {
       "unplugged": true
     },
+    "@ryyppy/rescript-promise@2.1.0": {
+      "unplugged": true
+    },
+    "bs-fetch@0.6.2": {
+      "unplugged": true
+    },
     "rescript@10.0.1": {
+      "unplugged": true
+    },
+    "rescript-next@12.0.1": {
       "unplugged": true
     },
     "rescript-relay@1.0.2": {

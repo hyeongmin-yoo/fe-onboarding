@@ -15,5 +15,10 @@
   ],
   "suffix": ".mjs",
   "ppx-flags": ["rescript-relay/ppx"],
-  "bs-dependencies": ["@rescript/react", "rescript-relay"]
+  "bs-dependencies": [
+    "@rescript/react",
+    "rescript-relay",
+    "bs-fetch",
+    "@ryyppy/rescript-promise"
+  ]
 }

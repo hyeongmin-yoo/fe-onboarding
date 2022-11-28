@@ -122,6 +122,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@ryyppy/rescript-promise@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "@ryyppy/rescript-promise@npm:2.1.0"
+  checksum: 47761ce48800e3e169d2fc6d0d381a15dd7a724e3d7a31297b5cffec30273d46f310dd9f96452fc027523950d4ab5c02a1a21d94bb06190070a30bcfc2783308
+  languageName: node
+  linkType: hard
+
 "@swc/helpers@npm:0.4.14":
   version: 0.4.14
   resolution: "@swc/helpers@npm:0.4.14"
@@ -160,6 +167,13 @@ __metadata:
   version: 2.0.6
   resolution: "asap@npm:2.0.6"
   checksum: b296c92c4b969e973260e47523207cd5769abd27c245a68c26dc7a0fe8053c55bb04360237cb51cab1df52be939da77150ace99ad331fb7fb13b3423ed73ff3d
+  languageName: node
+  linkType: hard
+
+"bs-fetch@npm:^0.6.2":
+  version: 0.6.2
+  resolution: "bs-fetch@npm:0.6.2"
+  checksum: 5d02f32930e47b3697ca78d1878b18bfa2cfd7126f0a81218742a1ab30349e7d4924553c8843c4bb140079bb251a2c1a38891647c9cce854254e6e61c6211798
   languageName: node
   linkType: hard
 
@@ -291,6 +305,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"enhanced-resolve@npm:^5.10.0":
+  version: 5.12.0
+  resolution: "enhanced-resolve@npm:5.12.0"
+  dependencies:
+    graceful-fs: ^4.2.4
+    tapable: ^2.2.0
+  checksum: bf3f787facaf4ce3439bef59d148646344e372bef5557f0d37ea8aa02c51f50a925cd1f07b8d338f18992c29f544ec235a8c64bcdb56030196c48832a5494174
+  languageName: node
+  linkType: hard
+
 "escalade@npm:^3.1.1":
   version: 3.1.1
   resolution: "escalade@npm:3.1.1"
@@ -332,9 +356,12 @@ __metadata:
   resolution: "fe-onboarding@workspace:."
   dependencies:
     "@rescript/react": ^0.10.3
+    "@ryyppy/rescript-promise": ^2.1.0
+    bs-fetch: ^0.6.2
     concurrently: ^7.6.0
     get-graphql-schema: ^2.1.2
     next: 13.0.5
+    next-transpile-modules: ^10.0.0
     react: 18.2.0
     react-dom: 18.2.0
     react-relay: 14.1.0
@@ -343,6 +370,12 @@ __metadata:
     rescript-relay: ^1.0.2
   dependenciesMeta:
     "@rescript/react@0.10.3":
+      unplugged: true
+    "@ryyppy/rescript-promise@2.1.0":
+      unplugged: true
+    bs-fetch@0.6.2:
+      unplugged: true
+    rescript-next@12.0.1:
       unplugged: true
     rescript-relay@1.0.2:
       unplugged: true
@@ -369,6 +402,13 @@ __metadata:
   bin:
     get-graphql-schema: dist/index.js
   checksum: 2e299841d4eb34aeb25aa158cefacf343606e14c49cc9a36a2beb14f8d2f6486350024d276c76c115c4ad27c49e96b07c4f955a12e9a035582f25cba13419152
+  languageName: node
+  linkType: hard
+
+"graceful-fs@npm:^4.2.4":
+  version: 4.2.10
+  resolution: "graceful-fs@npm:4.2.10"
+  checksum: 3f109d70ae123951905d85032ebeae3c2a5a7a997430df00ea30df0e3a6c60cf6689b109654d6fdacd28810a053348c4d14642da1d075049e6be1ba5216218da
   languageName: node
   linkType: hard
 
@@ -456,6 +496,15 @@ __metadata:
   bin:
     nanoid: bin/nanoid.cjs
   checksum: 2fddd6dee994b7676f008d3ffa4ab16035a754f4bb586c61df5a22cf8c8c94017aadd360368f47d653829e0569a92b129979152ff97af23a558331e47e37cd9c
+  languageName: node
+  linkType: hard
+
+"next-transpile-modules@npm:^10.0.0":
+  version: 10.0.0
+  resolution: "next-transpile-modules@npm:10.0.0"
+  dependencies:
+    enhanced-resolve: ^5.10.0
+  checksum: 3300fc7081f63b2c9487588db7cbe718f209dfd2111adec22d9c8af0e3c8ade2d95fd45f91e045546d78d98cafc78a49431de9a623360d33831b5e694bf007c9
   languageName: node
   linkType: hard
 
@@ -778,6 +827,13 @@ __metadata:
   dependencies:
     has-flag: ^4.0.0
   checksum: c052193a7e43c6cdc741eb7f378df605636e01ad434badf7324f17fb60c69a880d8d8fcdcb562cf94c2350e57b937d7425ab5b8326c67c2adc48f7c87c1db406
+  languageName: node
+  linkType: hard
+
+"tapable@npm:^2.2.0":
+  version: 2.2.1
+  resolution: "tapable@npm:2.2.1"
+  checksum: 3b7a1b4d86fa940aad46d9e73d1e8739335efd4c48322cb37d073eb6f80f5281889bf0320c6d8ffcfa1a0dd5bfdbd0f9d037e252ef972aca595330538aac4d51
   languageName: node
   linkType: hard
 

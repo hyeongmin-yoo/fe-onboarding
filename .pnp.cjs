@@ -29,9 +29,12 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./",\
           "packageDependencies": [\
             ["@rescript/react", "virtual:7861357cc17a8564afeecc310719f9b7a466112c49f7998b5837590ac825bafb5885f04f449594d021e930feda0353a0c942acd3e4e469d5daeb2bfa0b7ae73a#npm:0.10.3"],\
+            ["@ryyppy/rescript-promise", "npm:2.1.0"],\
+            ["bs-fetch", "npm:0.6.2"],\
             ["concurrently", "npm:7.6.0"],\
             ["get-graphql-schema", "npm:2.1.2"],\
             ["next", "virtual:7861357cc17a8564afeecc310719f9b7a466112c49f7998b5837590ac825bafb5885f04f449594d021e930feda0353a0c942acd3e4e469d5daeb2bfa0b7ae73a#npm:13.0.5"],\
+            ["next-transpile-modules", "npm:10.0.0"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:7861357cc17a8564afeecc310719f9b7a466112c49f7998b5837590ac825bafb5885f04f449594d021e930feda0353a0c942acd3e4e469d5daeb2bfa0b7ae73a#npm:18.2.0"],\
             ["react-relay", "virtual:7861357cc17a8564afeecc310719f9b7a466112c49f7998b5837590ac825bafb5885f04f449594d021e930feda0353a0c942acd3e4e469d5daeb2bfa0b7ae73a#npm:14.1.0"],\
@@ -204,6 +207,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["@ryyppy/rescript-promise", [\
+        ["npm:2.1.0", {\
+          "packageLocation": "./.yarn/unplugged/@ryyppy-rescript-promise-npm-2.1.0-f1f4d77b91/node_modules/@ryyppy/rescript-promise/",\
+          "packageDependencies": [\
+            ["@ryyppy/rescript-promise", "npm:2.1.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["@swc/helpers", [\
         ["npm:0.4.14", {\
           "packageLocation": "./.yarn/cache/@swc-helpers-npm-0.4.14-f806c3fb16-273fd3f3fc.zip/node_modules/@swc/helpers/",\
@@ -246,6 +258,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/asap-npm-2.0.6-36714d439d-b296c92c4b.zip/node_modules/asap/",\
           "packageDependencies": [\
             ["asap", "npm:2.0.6"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["bs-fetch", [\
+        ["npm:0.6.2", {\
+          "packageLocation": "./.yarn/unplugged/bs-fetch-npm-0.6.2-d4f5b55a60/node_modules/bs-fetch/",\
+          "packageDependencies": [\
+            ["bs-fetch", "npm:0.6.2"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -390,6 +411,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["enhanced-resolve", [\
+        ["npm:5.12.0", {\
+          "packageLocation": "./.yarn/cache/enhanced-resolve-npm-5.12.0-c291ce4ee3-bf3f787fac.zip/node_modules/enhanced-resolve/",\
+          "packageDependencies": [\
+            ["enhanced-resolve", "npm:5.12.0"],\
+            ["graceful-fs", "npm:4.2.10"],\
+            ["tapable", "npm:2.2.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["escalade", [\
         ["npm:3.1.1", {\
           "packageLocation": "./.yarn/cache/escalade-npm-3.1.1-e02da076aa-a3e2a99f07.zip/node_modules/escalade/",\
@@ -439,9 +471,12 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["fe-onboarding", "workspace:."],\
             ["@rescript/react", "virtual:7861357cc17a8564afeecc310719f9b7a466112c49f7998b5837590ac825bafb5885f04f449594d021e930feda0353a0c942acd3e4e469d5daeb2bfa0b7ae73a#npm:0.10.3"],\
+            ["@ryyppy/rescript-promise", "npm:2.1.0"],\
+            ["bs-fetch", "npm:0.6.2"],\
             ["concurrently", "npm:7.6.0"],\
             ["get-graphql-schema", "npm:2.1.2"],\
             ["next", "virtual:7861357cc17a8564afeecc310719f9b7a466112c49f7998b5837590ac825bafb5885f04f449594d021e930feda0353a0c942acd3e4e469d5daeb2bfa0b7ae73a#npm:13.0.5"],\
+            ["next-transpile-modules", "npm:10.0.0"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:7861357cc17a8564afeecc310719f9b7a466112c49f7998b5837590ac825bafb5885f04f449594d021e930feda0353a0c942acd3e4e469d5daeb2bfa0b7ae73a#npm:18.2.0"],\
             ["react-relay", "virtual:7861357cc17a8564afeecc310719f9b7a466112c49f7998b5837590ac825bafb5885f04f449594d021e930feda0353a0c942acd3e4e469d5daeb2bfa0b7ae73a#npm:14.1.0"],\
@@ -470,6 +505,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["graphql", "npm:14.7.0"],\
             ["minimist", "npm:1.2.7"],\
             ["node-fetch", "virtual:73882c8dddea223b6b00b94058e511dc22089371c9e605bed63bb85d97cb4336d7db161433f554b720e85059e00475cb4fea83fd4ae57f8e7e4ef23e754b8207#npm:2.6.7"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["graceful-fs", [\
+        ["npm:4.2.10", {\
+          "packageLocation": "./.yarn/cache/graceful-fs-npm-4.2.10-79c70989ca-3f109d70ae.zip/node_modules/graceful-fs/",\
+          "packageDependencies": [\
+            ["graceful-fs", "npm:4.2.10"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -626,6 +670,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             "react-dom",\
             "react",\
             "sass"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["next-transpile-modules", [\
+        ["npm:10.0.0", {\
+          "packageLocation": "./.yarn/cache/next-transpile-modules-npm-10.0.0-35632e5048-3300fc7081.zip/node_modules/next-transpile-modules/",\
+          "packageDependencies": [\
+            ["next-transpile-modules", "npm:10.0.0"],\
+            ["enhanced-resolve", "npm:5.12.0"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -968,6 +1022,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["supports-color", "npm:8.1.1"],\
             ["has-flag", "npm:4.0.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["tapable", [\
+        ["npm:2.2.1", {\
+          "packageLocation": "./.yarn/cache/tapable-npm-2.2.1-8cf5ff3039-3b7a1b4d86.zip/node_modules/tapable/",\
+          "packageDependencies": [\
+            ["tapable", "npm:2.2.1"]\
           ],\
           "linkType": "HARD"\
         }]\
