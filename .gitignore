@@ -40,6 +40,8 @@ next-env.d.ts
 lib
 .bsb.lock
 __generated__
+!src/__generated__/.gitkeep
+
 
 # vscode
 .vscode
