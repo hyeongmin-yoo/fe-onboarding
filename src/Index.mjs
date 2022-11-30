@@ -338,11 +338,12 @@ function Index$RepoItem(Props) {
   var match$1 = use$3(undefined);
   var removeStar = match$1[0];
   var val = repo.description;
-  return React.createElement("div", undefined, React.createElement("div", undefined, React.createElement("strong", undefined, repo.name)), val !== undefined ? React.createElement("div", undefined, val) : null, repo.viewerHasStarred ? React.createElement("button", {
-                    style: {
-                      background: "#eee",
-                      border: "1px solid #ddd"
-                    },
+  return React.createElement("div", undefined, React.createElement("div", undefined, React.createElement("a", {
+                      className: "hover:underline hover:underline-offset-2",
+                      href: repo.url,
+                      target: "_blank"
+                    }, React.createElement("strong", undefined, repo.name))), val !== undefined ? React.createElement("div", undefined, val) : null, repo.viewerHasStarred ? React.createElement("button", {
+                    className: "mt-2 px-2 py-1 rounded-md border-solid border-2 border-gray-220 bg-gray-200",
                     disabled: match$1[1],
                     type: "button",
                     onClick: (function (param) {
@@ -363,11 +364,8 @@ function Index$RepoItem(Props) {
                               undefined
                             ]);
                       })
-                  }, "🌟 :", repo.stargazerCount) : React.createElement("button", {
-                    style: {
-                      background: "#fff",
-                      border: "1px solid #ddd"
-                    },
+                  }, "🌟 : ", repo.stargazerCount) : React.createElement("button", {
+                    className: "mt-2 px-2 py-1 rounded-md border-solid border-2 border-gray-220 bg-white",
                     disabled: match[1],
                     type: "button",
                     onClick: (function (param) {
@@ -388,7 +386,7 @@ function Index$RepoItem(Props) {
                               undefined
                             ]);
                       })
-                  }, "⭐️ :", repo.stargazerCount));
+                  }, "⭐️ : ", repo.stargazerCount));
 }
 
 var RepoItem = {
@@ -406,13 +404,17 @@ function Index$RepoList(Props) {
           }
           
         }));
-  return React.createElement("div", undefined, React.createElement("ul", undefined, Belt_Array.map(repos, (function (repo) {
+  return React.createElement("div", undefined, React.createElement("ul", {
+                  className: "my-4"
+                }, Belt_Array.map(repos, (function (repo) {
                         return React.createElement("li", {
-                                    key: repo.id
+                                    key: repo.id,
+                                    className: "first:mt-0 mt-4"
                                   }, React.createElement(Index$RepoItem, {
                                         repo: repo
                                       }));
                       }))), match.hasNext ? React.createElement("button", {
+                    className: "w-full bg-gray-200 p-2 rounded-md hover:bg-gray-300",
                     disabled: match.isLoadingNext,
                     onClick: (function (param) {
                         Curry._3(loadNext, count, undefined, undefined);
@@ -433,19 +435,22 @@ function Index$SearchField(Props) {
   var setKeyword = match[1];
   var keyword = match[0];
   return React.createElement("form", {
+              className: "flex justify-center",
               onSubmit: (function (evt) {
                   evt.preventDefault();
                   Curry._1(onSubmit, keyword);
                 })
             }, React.createElement("input", {
+                  className: "border-solid border-2 border-gray-600 py-1 px-2 focus:outline-none",
                   type: "search",
                   value: keyword,
                   onChange: (function (evt) {
                       Curry._1(setKeyword, evt.currentTarget.value);
                     })
                 }), React.createElement("button", {
+                  className: "bg-gray-600 text-white py-1 px-4",
                   type: "submit"
-                }, "Search"));
+                }, "검색"));
 }
 
 var SearchField = {
@@ -474,13 +479,19 @@ function $$default(param) {
       });
   var setKeyword = match[1];
   var keyword = match[0];
-  var tmp = keyword === "" ? React.createElement("div", undefined, "검색어를 입력하세요.") : React.createElement(React.Suspense, {
+  var tmp = keyword === "" ? React.createElement("div", {
+          className: "mt-10 text-center"
+        }, "검색어를 입력하세요.") : React.createElement(React.Suspense, {
           children: React.createElement(Index$SearchResult, {
                 keyword: keyword
               }),
-          fallback: "Loading..."
+          fallback: React.createElement("div", {
+                className: "mt-10 text-center"
+              }, "Loading...")
         });
-  return React.createElement(React.Fragment, undefined, React.createElement(Index$SearchField, {
+  return React.createElement("div", {
+              className: "p-4 max-w-2xl m-auto"
+            }, React.createElement(Index$SearchField, {
                   initValue: keyword,
                   onSubmit: (function (val) {
                       Curry._1(setKeyword, (function (param) {

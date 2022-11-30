@@ -21,6 +21,7 @@ module Fragment = %relay(`
           ... on Repository {
             id
             name
+            url
             description
             stargazerCount
             viewerHasStarred
@@ -35,7 +36,6 @@ module AddStarMutation = %relay(`
   mutation IndexAddRepoStarMutation($input: AddStarInput!) {
     addStar(input: $input) {
       starrable {
-        id
         stargazerCount
         viewerHasStarred
       }
@@ -47,7 +47,6 @@ module RemoveStarMutation = %relay(`
   mutation IndexRemoveRepoStarMutation($input: RemoveStarInput!) {
     removeStar(input: $input) {
       starrable {
-        id
         stargazerCount
         viewerHasStarred
       }
@@ -65,7 +64,9 @@ module RepoItem = {
 
     <div>
       <div>
-        <strong> {repo.name->React.string} </strong>
+        <a href={repo.url} target="_blank" className="hover:underline hover:underline-offset-2">
+          <strong> {repo.name->React.string} </strong>
+        </a>
       </div>
       {switch repo.description {
       | Some(val) => <div> {val->React.string} </div>
@@ -74,8 +75,8 @@ module RepoItem = {
       {repo.viewerHasStarred
         ? <button
             type_="button"
+            className="mt-2 px-2 py-1 rounded-md border-solid border-2 border-gray-220 bg-gray-200"
             disabled={isRemovingStar}
-            style={ReactDOM.Style.make(~background="#eee", ~border="1px solid #ddd", ())}
             onClick={_ => {
               removeStar(
                 ~variables={
@@ -87,13 +88,13 @@ module RepoItem = {
                 (),
               )->ignore
             }}>
-            {"🌟 :"->React.string}
+            {"🌟 : "->React.string}
             {repo.stargazerCount->React.int}
           </button>
         : <button
             type_="button"
+            className="mt-2 px-2 py-1 rounded-md border-solid border-2 border-gray-220 bg-white"
             disabled={isAddingStar}
-            style={ReactDOM.Style.make(~background="#fff", ~border="1px solid #ddd", ())}
             onClick={_ => {
               addStar(
                 ~variables={
@@ -105,7 +106,7 @@ module RepoItem = {
                 (),
               )->ignore
             }}>
-            {"⭐️ :"->React.string}
+            {"⭐️ : "->React.string}
             {repo.stargazerCount->React.int}
           </button>}
     </div>
@@ -127,17 +128,20 @@ module RepoList = {
       )
 
     <div>
-      <ul>
+      <ul className="my-4">
         {repos
         ->Array.map(repo =>
-          <li key=repo.id>
+          <li key=repo.id className="first:mt-0 mt-4">
             <RepoItem repo />
           </li>
         )
         ->React.array}
       </ul>
       {hasNext
-        ? <button onClick={_ => loadNext(~count, ())->ignore} disabled=isLoadingNext>
+        ? <button
+            className="w-full bg-gray-200 p-2 rounded-md hover:bg-gray-300"
+            onClick={_ => loadNext(~count, ())->ignore}
+            disabled=isLoadingNext>
             {"더 보기"->React.string}
           </button>
         : React.null}
@@ -151,16 +155,20 @@ module SearchField = {
     let (keyword, setKeyword) = React.useState(() => initValue)
 
     <form
+      className="flex justify-center"
       onSubmit={evt => {
         evt->ReactEvent.Form.preventDefault
         onSubmit(keyword)
       }}>
       <input
+        className="border-solid border-2 border-gray-600 py-1 px-2 focus:outline-none"
         type_="search"
         value=keyword
         onChange={evt => evt->ReactEvent.Form.currentTarget->(it => it["value"])->setKeyword}
       />
-      <button type_="submit"> {"Search"->React.string} </button>
+      <button type_="submit" className="bg-gray-600 text-white py-1 px-4">
+        {"검색"->React.string}
+      </button>
     </form>
   }
 }
@@ -176,14 +184,16 @@ module SearchResult = {
 let default = () => {
   let (keyword, setKeyword) = React.useState(() => "")
 
-  <>
+  <div className="p-4 max-w-2xl m-auto">
     <SearchField initValue=keyword onSubmit={val => setKeyword(_ => val)} />
     {switch keyword {
-    | "" => <div> {"검색어를 입력하세요."->React.string} </div>
+    | "" =>
+      <div className="mt-10 text-center"> {"검색어를 입력하세요."->React.string} </div>
     | _ =>
-      <React.Suspense fallback={"Loading..."->React.string}>
+      <React.Suspense
+        fallback={<div className="mt-10 text-center"> {"Loading..."->React.string} </div>}>
         <SearchResult keyword />
       </React.Suspense>
     }}
-  </>
+  </div>
 }
