@@ -44,5 +44,6 @@ __generated__
 
 
 # vscode
-.vscode
+.vscode/*
 !.vscode/settings.json
+!.vscode/css_data.json
