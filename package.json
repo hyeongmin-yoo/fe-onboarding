@@ -26,10 +26,13 @@
   },
   "devDependencies": {
     "@rescript/react": "^0.10.3",
+    "autoprefixer": "^10.4.13",
     "concurrently": "^7.6.0",
     "get-graphql-schema": "^2.1.2",
     "next-transpile-modules": "^10.0.0",
-    "rescript": "^10.0.1"
+    "postcss": "^8.4.19",
+    "rescript": "^10.0.1",
+    "tailwindcss": "^3.2.4"
   },
   "dependenciesMeta": {
     "@rescript/react@0.10.3": {
