@@ -5,6 +5,5 @@
   "rescript.settings.binaryPath": ".yarn/unplugged/rescript-npm-10.0.1-c064c63c72/node_modules/rescript",
   "files.associations": {
     "*.env.local": "env",
-  },
-  "rescript.settings.inlayHints.enable": true
+  }
 }
