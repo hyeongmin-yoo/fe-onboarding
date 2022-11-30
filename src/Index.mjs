@@ -2,13 +2,19 @@
 
 import * as Curry from "rescript/lib/es6/curry.js";
 import * as React from "react";
+import * as Belt_Array from "rescript/lib/es6/belt_Array.js";
 import * as Js_promise from "rescript/lib/es6/js_promise.js";
 import * as Caml_option from "rescript/lib/es6/caml_option.js";
 import * as ReactRelay from "react-relay";
 import * as RescriptRelay from "rescript-relay/src/RescriptRelay.mjs";
 import * as RelayRuntime from "relay-runtime";
+import * as Js_null_undefined from "rescript/lib/es6/js_null_undefined.js";
 import * as IndexQuery_graphql from "./__generated__/IndexQuery_graphql.mjs";
 import * as RescriptRelay_Internal from "rescript-relay/src/RescriptRelay_Internal.mjs";
+import * as IndexRepos_query_graphql from "./__generated__/IndexRepos_query_graphql.mjs";
+import * as IndexRepoRefetchQuery_graphql from "./__generated__/IndexRepoRefetchQuery_graphql.mjs";
+import * as IndexAddRepoStarMutation_graphql from "./__generated__/IndexAddRepoStarMutation_graphql.mjs";
+import * as IndexRemoveRepoStarMutation_graphql from "./__generated__/IndexRemoveRepoStarMutation_graphql.mjs";
 
 function use(variables, fetchPolicy, fetchKey, networkCacheConfig, param) {
   var data = ReactRelay.useLazyLoadQuery(IndexQuery_graphql.node, RescriptRelay_Internal.internal_cleanObjectFromUndefinedRaw(IndexQuery_graphql.Internal.convertVariables(variables)), {
@@ -88,13 +94,411 @@ var Query = {
   retain: retain
 };
 
+var getConnectionNodes = IndexRepos_query_graphql.Utils.getConnectionNodes;
+
+function internal_makeRefetchableFnOpts(fetchPolicy, onComplete, param) {
+  var tmp = {};
+  var tmp$1 = RescriptRelay.mapFetchPolicy(fetchPolicy);
+  if (tmp$1 !== undefined) {
+    tmp.fetchPolicy = Caml_option.valFromOption(tmp$1);
+  }
+  var tmp$2 = RescriptRelay_Internal.internal_nullableToOptionalExnHandler(onComplete);
+  if (tmp$2 !== undefined) {
+    tmp.onComplete = Caml_option.valFromOption(tmp$2);
+  }
+  return tmp;
+}
+
+function useRefetchable(fRef) {
+  var match = ReactRelay.useRefetchableFragment(IndexRepos_query_graphql.node, fRef);
+  var refetchFn = match[1];
+  var data = RescriptRelay_Internal.internal_useConvertedValue(IndexRepos_query_graphql.Internal.convertFragment, match[0]);
+  return [
+          data,
+          React.useMemo((function () {
+                  return function (param, param$1, param$2, param$3) {
+                    return Curry._2(refetchFn, RescriptRelay_Internal.internal_removeUndefinedAndConvertNullsRaw(IndexRepoRefetchQuery_graphql.Internal.convertVariables(param)), internal_makeRefetchableFnOpts(param$1, param$2, undefined));
+                  };
+                }), [refetchFn])
+        ];
+}
+
+function use$1(fRef) {
+  var data = ReactRelay.useFragment(IndexRepos_query_graphql.node, fRef);
+  return RescriptRelay_Internal.internal_useConvertedValue(IndexRepos_query_graphql.Internal.convertFragment, data);
+}
+
+function useOpt(opt_fRef) {
+  var fr = opt_fRef !== undefined ? Caml_option.some(Caml_option.valFromOption(opt_fRef)) : undefined;
+  var nullableFragmentData = ReactRelay.useFragment(IndexRepos_query_graphql.node, fr !== undefined ? Js_null_undefined.fromOption(Caml_option.some(Caml_option.valFromOption(fr))) : null);
+  var data = (nullableFragmentData == null) ? undefined : Caml_option.some(nullableFragmentData);
+  return RescriptRelay_Internal.internal_useConvertedValue((function (rawFragment) {
+                if (rawFragment !== undefined) {
+                  return IndexRepos_query_graphql.Internal.convertFragment(rawFragment);
+                }
+                
+              }), data);
+}
+
+function usePagination(fr) {
+  var p = ReactRelay.usePaginationFragment(IndexRepos_query_graphql.node, fr);
+  var data = RescriptRelay_Internal.internal_useConvertedValue(IndexRepos_query_graphql.Internal.convertFragment, p.data);
+  return {
+          data: data,
+          loadNext: React.useMemo((function () {
+                  return function (param, param$1, param$2) {
+                    return p.loadNext(param, {
+                                onComplete: RescriptRelay_Internal.internal_nullableToOptionalExnHandler(param$1)
+                              });
+                  };
+                }), [p.loadNext]),
+          loadPrevious: React.useMemo((function () {
+                  return function (param, param$1, param$2) {
+                    return p.loadPrevious(param, {
+                                onComplete: RescriptRelay_Internal.internal_nullableToOptionalExnHandler(param$1)
+                              });
+                  };
+                }), [p.loadPrevious]),
+          hasNext: p.hasNext,
+          hasPrevious: p.hasPrevious,
+          isLoadingNext: p.isLoadingNext,
+          isLoadingPrevious: p.isLoadingPrevious,
+          refetch: React.useMemo((function () {
+                  return function (param, param$1, param$2, param$3) {
+                    return p.refetch(RescriptRelay_Internal.internal_cleanObjectFromUndefinedRaw(IndexRepoRefetchQuery_graphql.Internal.convertVariables(param)), internal_makeRefetchableFnOpts(param$1, param$2, undefined));
+                  };
+                }), [p.refetch])
+        };
+}
+
+function useBlockingPagination(fRef) {
+  var p = ReactRelay.useBlockingPaginationFragment(IndexRepos_query_graphql.node, fRef);
+  var data = RescriptRelay_Internal.internal_useConvertedValue(IndexRepos_query_graphql.Internal.convertFragment, p.data);
+  return {
+          data: data,
+          loadNext: React.useMemo((function () {
+                  return function (param, param$1, param$2) {
+                    return p.loadNext(param, {
+                                onComplete: RescriptRelay_Internal.internal_nullableToOptionalExnHandler(param$1)
+                              });
+                  };
+                }), [p.loadNext]),
+          loadPrevious: React.useMemo((function () {
+                  return function (param, param$1, param$2) {
+                    return p.loadPrevious(param, {
+                                onComplete: RescriptRelay_Internal.internal_nullableToOptionalExnHandler(param$1)
+                              });
+                  };
+                }), [p.loadPrevious]),
+          hasNext: p.hasNext,
+          hasPrevious: p.hasPrevious,
+          refetch: React.useMemo((function () {
+                  return function (param, param$1, param$2, param$3) {
+                    return p.refetch(RescriptRelay_Internal.internal_cleanObjectFromUndefinedRaw(IndexRepoRefetchQuery_graphql.Internal.convertVariables(param)), internal_makeRefetchableFnOpts(param$1, param$2, undefined));
+                  };
+                }), [p.refetch])
+        };
+}
+
+var makeRefetchVariables = IndexRepoRefetchQuery_graphql.Types.makeRefetchVariables;
+
+var Fragment = {
+  getConnectionNodes: getConnectionNodes,
+  Types: undefined,
+  internal_makeRefetchableFnOpts: internal_makeRefetchableFnOpts,
+  useRefetchable: useRefetchable,
+  Operation: undefined,
+  use: use$1,
+  useOpt: useOpt,
+  usePagination: usePagination,
+  useBlockingPagination: useBlockingPagination,
+  makeRefetchVariables: makeRefetchVariables
+};
+
+function commitMutation(environment, variables, optimisticUpdater, optimisticResponse, updater, onCompleted, onError, uploadables, param) {
+  return RelayRuntime.commitMutation(environment, {
+              mutation: IndexAddRepoStarMutation_graphql.node,
+              variables: IndexAddRepoStarMutation_graphql.Internal.convertVariables(variables),
+              onCompleted: (function (res, err) {
+                  if (onCompleted !== undefined) {
+                    return Curry._2(onCompleted, IndexAddRepoStarMutation_graphql.Internal.convertResponse(res), (err == null) ? undefined : Caml_option.some(err));
+                  }
+                  
+                }),
+              onError: (function (err) {
+                  if (onError !== undefined) {
+                    return Curry._1(onError, (err == null) ? undefined : Caml_option.some(err));
+                  }
+                  
+                }),
+              optimisticResponse: optimisticResponse !== undefined ? IndexAddRepoStarMutation_graphql.Internal.convertWrapRawResponse(optimisticResponse) : undefined,
+              optimisticUpdater: optimisticUpdater,
+              updater: updater !== undefined ? (function (store, r) {
+                    Curry._2(updater, store, IndexAddRepoStarMutation_graphql.Internal.convertResponse(r));
+                  }) : undefined,
+              uploadables: uploadables
+            });
+}
+
+function use$2(param) {
+  var match = ReactRelay.useMutation(IndexAddRepoStarMutation_graphql.node);
+  var mutate = match[0];
+  return [
+          React.useMemo((function () {
+                  return function (param, param$1, param$2, param$3, param$4, param$5, param$6, param$7, param$8) {
+                    return Curry._1(mutate, {
+                                onError: param,
+                                onCompleted: param$1 !== undefined ? (function (r, errors) {
+                                      Curry._2(param$1, IndexAddRepoStarMutation_graphql.Internal.convertResponse(r), (errors == null) ? undefined : Caml_option.some(errors));
+                                    }) : undefined,
+                                onUnsubscribe: param$2,
+                                optimisticResponse: param$3 !== undefined ? IndexAddRepoStarMutation_graphql.Internal.convertWrapRawResponse(param$3) : undefined,
+                                optimisticUpdater: param$4,
+                                updater: param$5 !== undefined ? (function (store, r) {
+                                      Curry._2(param$5, store, IndexAddRepoStarMutation_graphql.Internal.convertResponse(r));
+                                    }) : undefined,
+                                variables: IndexAddRepoStarMutation_graphql.Internal.convertVariables(param$6),
+                                uploadables: param$7
+                              });
+                  };
+                }), [mutate]),
+          match[1]
+        ];
+}
+
+var AddStarMutation = {
+  Operation: undefined,
+  Types: undefined,
+  commitMutation: commitMutation,
+  use: use$2
+};
+
+function commitMutation$1(environment, variables, optimisticUpdater, optimisticResponse, updater, onCompleted, onError, uploadables, param) {
+  return RelayRuntime.commitMutation(environment, {
+              mutation: IndexRemoveRepoStarMutation_graphql.node,
+              variables: IndexRemoveRepoStarMutation_graphql.Internal.convertVariables(variables),
+              onCompleted: (function (res, err) {
+                  if (onCompleted !== undefined) {
+                    return Curry._2(onCompleted, IndexRemoveRepoStarMutation_graphql.Internal.convertResponse(res), (err == null) ? undefined : Caml_option.some(err));
+                  }
+                  
+                }),
+              onError: (function (err) {
+                  if (onError !== undefined) {
+                    return Curry._1(onError, (err == null) ? undefined : Caml_option.some(err));
+                  }
+                  
+                }),
+              optimisticResponse: optimisticResponse !== undefined ? IndexRemoveRepoStarMutation_graphql.Internal.convertWrapRawResponse(optimisticResponse) : undefined,
+              optimisticUpdater: optimisticUpdater,
+              updater: updater !== undefined ? (function (store, r) {
+                    Curry._2(updater, store, IndexRemoveRepoStarMutation_graphql.Internal.convertResponse(r));
+                  }) : undefined,
+              uploadables: uploadables
+            });
+}
+
+function use$3(param) {
+  var match = ReactRelay.useMutation(IndexRemoveRepoStarMutation_graphql.node);
+  var mutate = match[0];
+  return [
+          React.useMemo((function () {
+                  return function (param, param$1, param$2, param$3, param$4, param$5, param$6, param$7, param$8) {
+                    return Curry._1(mutate, {
+                                onError: param,
+                                onCompleted: param$1 !== undefined ? (function (r, errors) {
+                                      Curry._2(param$1, IndexRemoveRepoStarMutation_graphql.Internal.convertResponse(r), (errors == null) ? undefined : Caml_option.some(errors));
+                                    }) : undefined,
+                                onUnsubscribe: param$2,
+                                optimisticResponse: param$3 !== undefined ? IndexRemoveRepoStarMutation_graphql.Internal.convertWrapRawResponse(param$3) : undefined,
+                                optimisticUpdater: param$4,
+                                updater: param$5 !== undefined ? (function (store, r) {
+                                      Curry._2(param$5, store, IndexRemoveRepoStarMutation_graphql.Internal.convertResponse(r));
+                                    }) : undefined,
+                                variables: IndexRemoveRepoStarMutation_graphql.Internal.convertVariables(param$6),
+                                uploadables: param$7
+                              });
+                  };
+                }), [mutate]),
+          match[1]
+        ];
+}
+
+var RemoveStarMutation = {
+  Operation: undefined,
+  Types: undefined,
+  commitMutation: commitMutation$1,
+  use: use$3
+};
+
+function Index$RepoItem(Props) {
+  var repo = Props.repo;
+  var match = use$2(undefined);
+  var addStar = match[0];
+  var match$1 = use$3(undefined);
+  var removeStar = match$1[0];
+  var val = repo.description;
+  return React.createElement("div", undefined, React.createElement("div", undefined, React.createElement("strong", undefined, repo.name)), val !== undefined ? React.createElement("div", undefined, val) : null, repo.viewerHasStarred ? React.createElement("button", {
+                    style: {
+                      background: "#eee",
+                      border: "1px solid #ddd"
+                    },
+                    disabled: match$1[1],
+                    type: "button",
+                    onClick: (function (param) {
+                        Curry.app(removeStar, [
+                              undefined,
+                              undefined,
+                              undefined,
+                              undefined,
+                              undefined,
+                              undefined,
+                              {
+                                input: {
+                                  starrableId: repo.id,
+                                  clientMutationId: undefined
+                                }
+                              },
+                              undefined,
+                              undefined
+                            ]);
+                      })
+                  }, "🌟 :", repo.stargazerCount) : React.createElement("button", {
+                    style: {
+                      background: "#fff",
+                      border: "1px solid #ddd"
+                    },
+                    disabled: match[1],
+                    type: "button",
+                    onClick: (function (param) {
+                        Curry.app(addStar, [
+                              undefined,
+                              undefined,
+                              undefined,
+                              undefined,
+                              undefined,
+                              undefined,
+                              {
+                                input: {
+                                  starrableId: repo.id,
+                                  clientMutationId: undefined
+                                }
+                              },
+                              undefined,
+                              undefined
+                            ]);
+                      })
+                  }, "⭐️ :", repo.stargazerCount));
+}
+
+var RepoItem = {
+  make: Index$RepoItem
+};
+
+function Index$RepoList(Props) {
+  var query = Props.query;
+  var count = Props.count;
+  var match = usePagination(query);
+  var loadNext = match.loadNext;
+  var repos = Belt_Array.keepMap(Curry._1(getConnectionNodes, match.data.search), (function (repo) {
+          if (typeof repo === "object" && repo.NAME === "Repository") {
+            return repo.VAL;
+          }
+          
+        }));
+  return React.createElement("div", undefined, React.createElement("ul", undefined, Belt_Array.map(repos, (function (repo) {
+                        return React.createElement("li", {
+                                    key: repo.id
+                                  }, React.createElement(Index$RepoItem, {
+                                        repo: repo
+                                      }));
+                      }))), match.hasNext ? React.createElement("button", {
+                    disabled: match.isLoadingNext,
+                    onClick: (function (param) {
+                        Curry._3(loadNext, count, undefined, undefined);
+                      })
+                  }, "더 보기") : null);
+}
+
+var RepoList = {
+  make: Index$RepoList
+};
+
+function Index$SearchField(Props) {
+  var initValue = Props.initValue;
+  var onSubmit = Props.onSubmit;
+  var match = React.useState(function () {
+        return initValue;
+      });
+  var setKeyword = match[1];
+  var keyword = match[0];
+  return React.createElement("form", {
+              onSubmit: (function (evt) {
+                  evt.preventDefault();
+                  Curry._1(onSubmit, keyword);
+                })
+            }, React.createElement("input", {
+                  type: "search",
+                  value: keyword,
+                  onChange: (function (evt) {
+                      Curry._1(setKeyword, evt.currentTarget.value);
+                    })
+                }), React.createElement("button", {
+                  type: "submit"
+                }, "Search"));
+}
+
+var SearchField = {
+  make: Index$SearchField
+};
+
+function Index$SearchResult(Props) {
+  var keyword = Props.keyword;
+  var queryData = use({
+        count: 5,
+        query: keyword
+      }, undefined, undefined, undefined, undefined);
+  return React.createElement(Index$RepoList, {
+              query: queryData.fragmentRefs,
+              count: 5
+            });
+}
+
+var SearchResult = {
+  make: Index$SearchResult
+};
+
 function $$default(param) {
-  var queryData = use(undefined, undefined, undefined, undefined, undefined);
-  return React.createElement("div", undefined, "Hello " + queryData.viewer.login + "!");
+  var match = React.useState(function () {
+        return "";
+      });
+  var setKeyword = match[1];
+  var keyword = match[0];
+  var tmp = keyword === "" ? React.createElement("div", undefined, "검색어를 입력하세요.") : React.createElement(React.Suspense, {
+          children: React.createElement(Index$SearchResult, {
+                keyword: keyword
+              }),
+          fallback: "Loading..."
+        });
+  return React.createElement(React.Fragment, undefined, React.createElement(Index$SearchField, {
+                  initValue: keyword,
+                  onSubmit: (function (val) {
+                      Curry._1(setKeyword, (function (param) {
+                              return val;
+                            }));
+                    })
+                }), tmp);
 }
 
 export {
   Query ,
+  Fragment ,
+  AddStarMutation ,
+  RemoveStarMutation ,
+  RepoItem ,
+  RepoList ,
+  SearchField ,
+  SearchResult ,
   $$default ,
   $$default as default,
 }
